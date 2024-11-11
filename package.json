@@ -1,0 +1,27 @@
+{
+  "name": "api-restfull",
+  "version": "1.0.0",
+  "description": "API Restfull con Node.js, Express y MongoDB",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env .",
+    "watch": "node --watch --env-file=.env .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "API",
+    "Express",
+    "API",
+    "RESTFULL",
+    "MongoDB"
+  ],
+  "author": "Debora Rolon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "mongodb": "^6.10.0"
+  }
+}

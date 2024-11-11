@@ -1,9 +1,9 @@
 class ProductsMemoryModel{
     constructor(){
         this.products = [
-            {id: 1, name: "Laptop HP Pavilion", price: 750, catogory: "Electrónica", stock: 20},
-            {id: 2, name: "Cafetera Nespresso", price: 120, catogory: "Electrodomésticos", stock: 50},
-            {id: 3, name: "Smartphone Samsung Galaxy", price: 300, category: "Electrónica", stock: 30},
+            {id: 1, name: "Laptop HP Pavilion", price: 750, category: "Electronica", stock: 20},
+            {id: 2, name: "Cafetera Nespresso", price: 120, category: "Electrodomesticos", stock: 50},
+            {id: 3, name: "Smartphone Samsung Galaxy", price: 300, category: "Electronica", stock: 30},
             {id: 4, name: "Silla ergonómica", price: 200, category: "Muebles", stock: 15},
             {id: 5, name: "Auriculares Sony WH-1000XM4", price: 350, category: "Accesorios", stock: 25}
           ]
@@ -12,6 +12,11 @@ class ProductsMemoryModel{
 
     getAllProducts = async () => {
         return this.products
+    }
+
+    getAllProductsByCategory = async (category) => {
+        const prodFiltered = this.products.filter((prod) => prod.category.toLowerCase() == category)
+        return prodFiltered
     }
 
     getProductsById = async (id) => {

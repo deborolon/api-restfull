@@ -10,6 +10,12 @@ class ProductsController{
         res.send(allProducts)
     }
 
+    getAllProductsByCategory = async (req, res) => {
+        const { category } = req.params
+        const allProductsByCategory = await this.controller.getAllProductsByCategory(category)
+        res.send(allProductsByCategory)
+    }
+
     getProductsById = async (req, res) => {
         const { id } = req.params
         const prodByID = await this.controller.getProductsById(id)

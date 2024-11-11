@@ -10,6 +10,10 @@ class ProductsService{
         return await this.service.getAllProducts()
     }
 
+    getAllProductsByCategory = async (category) => {
+        return await this.service.getAllProductsByCategory(category)
+    }
+
     getProductsById = async (id) => {
         const prodById = await this.service.getProductsById(id)
         return prodById

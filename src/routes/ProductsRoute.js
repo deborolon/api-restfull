@@ -1,5 +1,6 @@
 import ProductsController from '../controllers/ProductsController.js'
 import express from 'express'
+import { checkPermissions } from '../middleware/Authentication.js'
 
 class ProductsRoute{
     constructor(){
@@ -9,11 +10,12 @@ class ProductsRoute{
 
     start(){
         this.router.get('/', this.controller.getAllProducts)
-        this.router.get('/:id', this.controller.getProductsById)
-        this.router.post('/', this.controller.postProducts)
-        this.router.patch('/update/:id', this.controller.patchProducts)
-        this.router.put('/update/all/:id', this.controller.putProducts)
-        this.router.delete('/:id', this.controller.deleteProducts)
+        this.router.get('/:category', checkPermissions, this.controller.getAllProductsByCategory)
+        this.router.get('/:id', checkPermissions, this.controller.getProductsById)
+        this.router.post('/', checkPermissions, this.controller.postProducts)
+        this.router.patch('/update/:id', checkPermissions, this.controller.patchProducts)
+        this.router.put('/update/all/:id', checkPermissions, this.controller.putProducts)
+        this.router.delete('/:id', checkPermissions, this.controller.deleteProducts)
 
         return this.router
     }

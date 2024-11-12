@@ -1,5 +1,6 @@
 import GenericFactory from '../models/DAO/GenericFactory.js'
 import config from '../config/config.js'
+import { prodValidation } from '../validators/products.schema.js'
 
 class ProductsService{
     constructor(){
@@ -20,8 +21,13 @@ class ProductsService{
     }
 
     postProducts = async (prod) => {
-        const result = await this.service.postProducts(prod)
-        return result
+        const validate = await prodValidation(prod)
+        if(validate === true){
+            const result = await this.service.postProducts(prod)
+            return result
+        } else{
+            return validate.details[0].message
+        }
     }
 
     patchProducts = async (id, data) => {

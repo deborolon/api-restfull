@@ -1,5 +1,6 @@
 import GenericFactory from '../models/DAO/GenericFactory.js'
 import config from '../config/config.js'
+import { userValidation } from '../validators/users.schema.js'
 
 class UsersService{
     constructor(){
@@ -16,8 +17,13 @@ class UsersService{
     }
 
     postUsers = async (usr) => {
-        const newUsr = await this.service.postUsers(usr)
-        return newUsr
+        const validate = await userValidation(usr)
+        if(validate === true){
+            const result = await this.service.postUsers(usr)
+            return result
+        } else{
+            return validate.details[0].message
+        }
     }
 
     patchUsers = async (id, data) => {

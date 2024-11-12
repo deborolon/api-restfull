@@ -10,7 +10,7 @@ class ProductsRoute{
 
     start(){
         this.router.get('/', this.controller.getAllProducts)
-        this.router.get('/:category', checkPermissions, this.controller.getAllProductsByCategory)
+        this.router.get('/category/:category', checkPermissions, this.controller.getAllProductsByCategory)
         this.router.get('/:id', checkPermissions, this.controller.getProductsById)
         this.router.post('/', checkPermissions, this.controller.postProducts)
         this.router.patch('/update/:id', checkPermissions, this.controller.patchProducts)

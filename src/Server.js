@@ -2,6 +2,7 @@ import UsersRoute from './routes/UsersRoute.js'
 import ProductsRoute from './routes/ProductsRoute.js'
 import express from 'express'
 import config from './config/config.js'
+import MongoConnection from './models/MongoConnection.js'
 
 class Server{
     constructor(){
@@ -20,12 +21,14 @@ class Server{
         this.server = this.app.listen(config.PORT, () => console.log(`Server running on http://localhost:${config.PORT}`))
         this.server.on("error", (err) => console.error(`An error has occurred on the server: ${err}`))
 
+        await MongoConnection.connect()
         return this.app
     }
 
     async stop() {
         if(this.server) {
             this.server.close()
+            await CnxMongoDB.disconnect()
             this.server = null
         }
     }

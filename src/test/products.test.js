@@ -6,7 +6,6 @@ const path = supertest('http://localhost:8080')
 
 describe('Products', () => {
     const data = generator.randomProducts()
-    console.log(data)
 
     it('GET ALL', async () => {
         const res = await path.get('/products').set('permission', 'ADMIN')
